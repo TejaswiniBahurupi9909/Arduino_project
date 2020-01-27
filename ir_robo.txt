@@ -1,0 +1,58 @@
+const int ProxSensor1=2; //IR sensor
+const int ProxSensor2=3;
+const int ProxSensor3=4;
+//For motor B
+const int motorPin1  = 5;  // Pin 10 of L293
+const int motorPin2  = 6;  // Pin 15 of L293
+//For motor A
+const int motorPin3  = 10; // Pin  2 of L293
+const int motorPin4  = 9;  // Pin  7 of L293
+
+void setup()
+{                
+    pinMode(motorPin1, OUTPUT);
+    pinMode(motorPin2, OUTPUT);
+    pinMode(motorPin3, OUTPUT);
+    pinMode(motorPin4, OUTPUT);
+    pinMode(ProxSensor1,INPUT);
+    pinMode(ProxSensor2,INPUT);
+    pinMode(ProxSensor3,INPUT);
+}
+
+void loop()
+{
+  if(digitalRead(ProxSensor1)==HIGH)      //Check the sensor output
+  {
+    digitalWrite(motorPin1, LOW);
+    digitalWrite(motorPin2, HIGH);
+    digitalWrite(motorPin3, LOW);
+    digitalWrite(motorPin4, HIGH);
+    delay(2000);
+    digitalWrite(motorPin1, LOW);
+    digitalWrite(motorPin2, HIGH);
+    digitalWrite(motorPin3, HIGH);
+    digitalWrite(motorPin4, LOW);
+    delay(1000);
+  }
+  else if(digitalRead(ProxSensor2)==HIGH)
+  {
+    digitalWrite(motorPin1, LOW);
+    digitalWrite(motorPin2, LOW);
+    digitalWrite(motorPin3, HIGH);
+    digitalWrite(motorPin4, LOW);
+  }
+  else if(digitalRead(ProxSensor3)==HIGH)
+  {
+    digitalWrite(motorPin1, HIGH);
+    digitalWrite(motorPin2, LOW);
+    digitalWrite(motorPin3, LOW);
+    digitalWrite(motorPin4, LOW);
+  }
+  else
+  {
+    digitalWrite(motorPin1, HIGH);
+    digitalWrite(motorPin2, LOW);
+    digitalWrite(motorPin3, HIGH);
+    digitalWrite(motorPin4, LOW);
+  }
+}
